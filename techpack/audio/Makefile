@@ -31,6 +31,10 @@ ifeq ($(CONFIG_ARCH_SDMSHRIKE), y)
 include $(srctree)/techpack/audio/config/sm8150auto.conf
 export $(shell sed 's/=.*//' $(srctree)/techpack/audio/config/sm8150auto.conf)
 endif
+ifeq ($(CONFIG_MACH_XIAOMI_SWEET), y)
+include $(srctree)/techpack/audio/config/xiaomi/sweetauto.conf
+export $(shell sed 's/=.*//' $(srctree)/techpack/audio/config/xiaomi/sweetauto.conf)
+endif
 
 # Use USERINCLUDE when you must reference the UAPI directories only.
 USERINCLUDE     += \
@@ -78,6 +82,10 @@ endif
 ifeq ($(CONFIG_ARCH_SDMSHRIKE), y)
 LINUXINCLUDE    += \
                 -include $(srctree)/techpack/audio/config/sm8150autoconf.h
+endif
+ifeq ($(CONFIG_MACH_XIAOMI_SWEET), y)
+LINUXINCLUDE    += \
+                -include $(srctree)/techpack/audio/config/xiaomi/sweetautoconf.h
 endif
 
 obj-y += soc/
