@@ -1,1 +1,29 @@
+name: ExSoniC-sweet
 
+on: # [push]
+  workflow_dispatch:
+  watch:
+    types: [started]
+
+env:
+   CHATID: ${{ secrets.CHAT_ID }}
+   API_BOT: ${{ secrets.BOT_API }}
+   TYPE_KERNEL: ${{ secrets.AN_26 }}
+   TZ: Asia/Jakarta
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: ubuntu:jammy-20211029
+    steps:
+        - name: Checkout
+          uses: actions/checkout@master
+
+        - name: Initialize environment
+          run: |
+           chmod +x initialize
+           bash initialize
+        - name: Starting build
+          run: |
+           chmod +x ExSoniC-sweet.sh && bash ExSoniC-sweet.sh
