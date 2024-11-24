@@ -639,7 +639,7 @@ void elv_drain_elevator(struct request_queue *q)
 
 void __elv_add_request(struct request_queue *q, struct request *rq, int where)
 {
-	struct list_head *entry; 
+    struct list_head *entry;
 
 	trace_block_rq_insert(q, rq);
 

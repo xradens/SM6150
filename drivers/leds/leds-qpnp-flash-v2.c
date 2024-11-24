@@ -2779,24 +2779,28 @@ static int qpnp_flash_led_probe(struct platform_device *pdev)
 					i, rc);
 				goto error_led_register;
 			}
+			#if 1
 			fnode = &led->fnode[i];
 			if (!strcmp("led:torch_0", fnode->cdev.name)) {
 				g_torch_0 = fnode;
 			} else if (!strcmp("led:torch_1",  fnode->cdev.name)) {
 				g_torch_1 = fnode;
 			}
+			#endif
 			i++;
 		}
 
 		if (!strcmp("switch", temp_string)) {
 			rc = qpnp_flash_led_parse_and_register_switch(led,
 					&led->snode[j], temp);
+			#if 1
 			snode = &led->snode[j];
 			if (!strcmp("led:switch_0", snode->cdev.name)) {
 				g_switch_0 = snode;
 			} else if (!strcmp("led:switch_1", snode->cdev.name)) {
 				g_switch_1 = snode;
 			}
+			#endif
 			if (rc < 0) {
 				pr_err("Unable to parse and register switch node, rc=%d\n",
 					rc);
